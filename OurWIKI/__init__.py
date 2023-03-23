@@ -8,4 +8,8 @@ def create_app():
     def main_page():
         return render_template('main.html')
 
+    @app.route('/create')
+    def create_post():
+        return render_template('create_post.html')
+
     return app
