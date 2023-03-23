@@ -6,6 +6,6 @@ def create_app():
 
     @app.route('/')
     def main_page():
-        return render_template('base.html')
+        return render_template('main.html')
 
     return app
