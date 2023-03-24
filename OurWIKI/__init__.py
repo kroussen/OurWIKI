@@ -12,4 +12,13 @@ def create_app():
     def create_post():
         return render_template('create_post.html')
 
+    @app.route('/register')
+    def register():
+        return render_template('register.html')
+
+
+    @app.route('/login')
+    def login():
+        return render_template('login.html')
+
     return app
