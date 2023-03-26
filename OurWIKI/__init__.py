@@ -3,22 +3,15 @@ from flask import Flask, render_template
 
 def create_app():
     app = Flask(__name__)
+    app.config.from_mapping(
+        SECRET_KEY='DEV',
+        DATABASE='OurWIKI/OurWIKI_DATABASE.sqlite'
+    )
 
-    @app.route('/')
-    def main_page():
-        return render_template('main.html')
+    from .auth import auth_blueprint
+    app.register_blueprint(auth_blueprint)
 
-    @app.route('/create')
-    def create_post():
-        return render_template('create_post.html')
-
-    @app.route('/register')
-    def register():
-        return render_template('register.html')
-
-
-    @app.route('/login')
-    def login():
-        return render_template('login.html')
+    from .post import post_blueprint
+    app.register_blueprint(post_blueprint)
 
     return app
