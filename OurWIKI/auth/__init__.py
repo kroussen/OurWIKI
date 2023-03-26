@@ -81,3 +81,12 @@ def load_logged_in_user():
 def logout():
     session.clear()
     return redirect(url_for('post.main'))
+
+
+@auth_blueprint.route('/profile')
+def profile():
+    posts = get_database().execute(
+        'SELECT * FROM post WHERE author_id = (?)', (g.user['id'],)
+    )
+    if g.user is not None:
+        return render_template('auth/profile.html', user=g.user, posts=posts)
