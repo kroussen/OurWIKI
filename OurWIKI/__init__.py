@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 
 
 def create_app():
@@ -7,6 +7,9 @@ def create_app():
         SECRET_KEY='DEV',
         DATABASE='OurWIKI/OurWIKI_DATABASE.sqlite'
     )
+
+    from OurWIKI import database
+    database.init_app(app)
 
     from .auth import auth_blueprint
     app.register_blueprint(auth_blueprint)

@@ -22,6 +22,7 @@
         </ul>
     </div>
 
+    {% if not g.user %}
     <div class="col-lg-4 fs-3 d-flex justify-content-around p-1">
       <a href="{{ url_for('auth.login') }}" class="text-decoration-none link-dark">
         Вход
@@ -32,13 +33,17 @@
         <i class="fa-solid fa-user-plus" style="color: #ff8000; font-size: 20px;"></i>
       </a>
     </div>
-
-    <!--<div class="col-lg-4 fs-3 d-flex justify-content-around p-1">
+    {% else %}
+    <div class="col-lg-4 fs-3 d-flex justify-content-around p-1">
       <a href="#" class="text-decoration-none link-dark">
         Мой профиль
         <i class="fa-solid fa-user" style="color: #ff8000; font-size: 20px;"></i>
       </a>
-    </div>-->
+      <a href="{{ url_for('auth.logout') }}" class="text-decoration-none link-dark">
+        Выйти
+      </a>
+    </div>
+    {% endif %}
 
 
   </div>

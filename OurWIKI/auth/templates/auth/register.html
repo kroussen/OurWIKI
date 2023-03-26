@@ -3,18 +3,14 @@
 {% block main %}
 <main class="container">
   <section class="p-5">
-    <form action="">
+    <form action="{{ url_for('auth.register') }}" method="POST">
       <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Введите ваш Email</label>
+        <input type="text" class="form-control" id="floatingInput" name="username">
+        <label for="floatingInput">Имя пользователя</label>
       </div>
       <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPassword" name="password">
         <label for="floatingPassword">Пароль</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingPasswordRepeat" placeholder="Password">
-        <label for="floatingPasswordRepeat">Повторите пароль</label>
       </div>
       <button class="btn fs-4" style="background-color: #ff8000;">Регистрация</button>
     </form>
