@@ -4,20 +4,17 @@
 <main class="container">
 
     <section class="p-3">
-        <h1 class="text-center py-3">Новая статья</h1>
-        <form action="">
+        <h2 class="text-center py-3">Новая статья</h2>
+        <form action="{{ url_for('post.create_post') }}" method="POST">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="floatingInput" placeholder="Заголовок">
+              <input type="text" class="form-control" id="floatingInput" name="title">
               <label for="floatingInput">Название статьи</label>
             </div>
             <div class="form-floating mb-3">
-              <textarea class="form-control" placeholder="Описание" id="floatingTextarea" style="height: 200px;"></textarea>
+              <textarea class="form-control" id="floatingTextarea" name="description" style="height: 200px;"></textarea>
               <label for="floatingTextarea">Описание статьи</label>
             </div>
-            <div class="d-grid gap-2">
-              <button class="btn fs-4" type="button" style="background-color: #ff8000;">Создать</button>
-            </div>
-
+            <input type="submit" class="btn fs-4" style="background-color: #ff8000;" value="Создать">
         </form>
     </section>
 
