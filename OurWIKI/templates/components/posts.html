@@ -2,10 +2,19 @@
 
   {% for post in posts %}
     <article>
-      <h2 class="p-2 border-bottom">{{ post['title'] }}</h2>
+      <h2 class="p-2 border-bottom">
+        {{ post['title'] }}
+        {% if g.user.username == post['username'] %}
+          <a href="{{ url_for('post.edit_post', post_id=post['id']) }}" class="btn btn-secondary">РЕДАКТИРОВАТЬ</a>
+          <a href="{{ url_for('post.delete_post', post_id=post['id']) }}" class="btn btn-danger">УДАЛИТЬ</a>
+        {% endif %}
+      </h2>
       <p class="p-2">{{ post['description'] }}</p>
       <p class="p-2">
-        Автор статьи: <a href="" style="text-decoration: none; color: #ff8000;">username</a>
+        Автор статьи: <a href="" style="text-decoration: none; color: #ff8000;">{{ post['username'] }}</a>
+      </p>
+      <p class="p-2">
+        Дата создания: {{ post['created'] }}
       </p>
     </article>
   {% endfor %}

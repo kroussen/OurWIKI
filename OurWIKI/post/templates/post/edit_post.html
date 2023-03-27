@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<main class="container">
+    <section class="p-3 pt-5">
+        <form action="{{ url_for('post.edit_post', post_id=post.id) }}" method="POST">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingInput" name="title" value="{{ post.title }}">
+              <label for="floatingInput">Название статьи</label>
+            </div>
+            <div class="form-floating mb-3">
+              <textarea class="form-control" id="floatingTextarea" name="description" style="height: 200px;">{{ post.description }}</textarea>
+              <label for="floatingTextarea">Описание статьи</label>
+            </div>
+            <input type="submit" class="btn fs-5" style="background-color: #ff8000;" value="СОХРАНИТЬ">
+        </form>
+    </section>
+</main>
+{% endblock main %}

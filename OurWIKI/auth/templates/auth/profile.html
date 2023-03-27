@@ -3,8 +3,7 @@
 {% block main %}
 <main class="container">
   <section class="p-5">
-    <h2 class="text-center">Профиль</h2>
-    {{ g.user['username'] }}
+    <h2>Имя пользователя: {{ g.user['username'] }}</h2>
     {% for post in posts %}
     <article>
       <h2 class="p-2 border-bottom">{{ post['title'] }}</h2>

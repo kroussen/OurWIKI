@@ -1,50 +1,47 @@
-<header class="container-fluid p-3 border-bottom">
-  <div class="row">
+<header class="container-fluid  border-bottom">
+  <section class="row">
 
-    <div class="col-lg-2 d-none d-lg-block">
+    <aside class="col-lg-2 d-none d-lg-block">
       <a href="{{ url_for('post.main') }}">
         <img src="{{ url_for('static', filename='images/Logo_OURWIKI.png') }}" alt="Logo OURWIKI" class="img-fluid">
       </a>
-    </div>
+    </aside>
 
-    <div class="col-12 col-lg-6 fs-3">
-        <ul class="nav justify-content-center">
+    <nav class="col-12 col-lg-6 fs-3">
+        <ul class="nav">
           <li class="nav-item">
             <a class="nav-link link-secondary" aria-current="page" href="{{ url_for('post.main') }}">
-              Все статьи
+              ВСЕ СТАТЬИ
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link link-secondary" href="{{ url_for('post.create_post') }}">
-              Новая статья
+              НОВАЯ СТАТЬЯ
             </a>
           </li>
         </ul>
-    </div>
+    </nav>
 
     {% if not g.user %}
-    <div class="col-lg-4 fs-3 d-flex justify-content-around p-1">
+    <aside class="col-lg-4 fs-3 d-flex justify-content-around p-1">
       <a href="{{ url_for('auth.login') }}" class="text-decoration-none link-dark">
-        Вход
-        <i class="fa-solid fa-arrow-right-to-bracket" style="color: #ff8000; font-size: 20px;"></i>
+        ВХОД
       </a>
       <a href="{{ url_for('auth.register') }}" class="text-decoration-none link-dark">
-        Регистрация
-        <i class="fa-solid fa-user-plus" style="color: #ff8000; font-size: 20px;"></i>
+        РЕГИСТРАЦИЯ
       </a>
-    </div>
+    </aside>
     {% else %}
-    <div class="col-lg-4 fs-3 d-flex justify-content-around p-1">
+    <aside class="col-lg-4 fs-3 d-flex justify-content-around p-2">
       <a href="{{ url_for('auth.profile') }}" class="text-decoration-none link-dark">
-        Мой профиль
-        <i class="fa-solid fa-user" style="color: #ff8000; font-size: 20px;"></i>
+        ПРОФИЛЬ
       </a>
       <a href="{{ url_for('auth.logout') }}" class="text-decoration-none link-dark">
-        Выйти
+        ВЫЙТИ
       </a>
-    </div>
+    </aside>
     {% endif %}
 
 
-  </div>
+  </section>
 </header>

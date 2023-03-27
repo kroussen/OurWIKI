@@ -13,7 +13,7 @@ post_blueprint = Blueprint('post',
 def main():
     database = get_database()
     posts = database.execute(
-        'SELECT * FROM post ORDER BY created'
+        'SELECT * FROM post JOIN user ON post.author_id = user.id ORDER BY created'
     ).fetchall()
     return render_template('post/main.html', posts=posts)
 
@@ -38,3 +38,36 @@ def create_post():
             return redirect(url_for('post.main'))
 
     return render_template('post/create_post.html')
+
+
+@post_blueprint.route('/edit', methods=('GET', 'POST'))
+def edit_post():
+    post_id = request.args.get('post_id')
+    post = get_database().execute(
+        'SELECT * FROM post WHERE id=(?)', (post_id,)
+    ).fetchone()
+
+    if request.method == 'POST':
+        title = request.form['title']
+        description = request.form['description']
+        get_database().execute(
+            'UPDATE post SET title = ?, description = ? WHERE id = ?',
+            (title, description, post_id,)
+        )
+        get_database().commit()
+        return redirect(url_for('post.main'))
+
+    return render_template('post/edit_post.html', post=post)
+
+
+@post_blueprint.route('/delete')
+def delete_post():
+    post_id = request.args.get('post_id')
+    post = get_database().execute(
+        'SELECT * FROM post WHERE id=(?)', (post_id,)
+    ).fetchone()
+    get_database().execute(
+        'DELETE FROM post WHERE id = ?', (post_id,)
+    )
+    get_database().commit()
+    return redirect(url_for('post.main'))
